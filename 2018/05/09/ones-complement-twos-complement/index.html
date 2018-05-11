@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+  <meta name="keywords" content="C++," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关于原码：原码表示法是机器数的一种简单的表示法,其符号位用0表示正号，用1表示负号，数值一般用二进制形式表示。 关于反码：机器数的反码可由原码得到,如果机器数是正数，则该机器数的反码与原码一样；如果机器数是负数，则该机器数的反码是对它的原码（符号位除外）各位取反而得到的。 关于补码：1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算比">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于原码、反码、补码">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/ones-complement-twos-complement/index.html">
+<meta property="og:site_name" content="bichenghu.github.io">
+<meta property="og:description" content="关于原码：原码表示法是机器数的一种简单的表示法,其符号位用0表示正号，用1表示负号，数值一般用二进制形式表示。 关于反码：机器数的反码可由原码得到,如果机器数是正数，则该机器数的反码与原码一样；如果机器数是负数，则该机器数的反码是对它的原码（符号位除外）各位取反而得到的。 关于补码：1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算比">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-11T05:35:50.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于原码、反码、补码">
+<meta name="twitter:description" content="关于原码：原码表示法是机器数的一种简单的表示法,其符号位用0表示正号，用1表示负号，数值一般用二进制形式表示。 关于反码：机器数的反码可由原码得到,如果机器数是正数，则该机器数的反码与原码一样；如果机器数是负数，则该机器数的反码是对它的原码（符号位除外）各位取反而得到的。 关于补码：1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算比">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/09/ones-complement-twos-complement/"/>
+
+
+
+
+
+  <title>关于原码、反码、补码 | bichenghu.github.io</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bichenghu.github.io</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/09/ones-complement-twos-complement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bicheng Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bichenghu.github.io">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于原码、反码、补码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T20:28:12+08:00">
+                2018-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关于原码："><a href="#关于原码：" class="headerlink" title="关于原码："></a>关于原码：</h2><p>原码表示法是机器数的一种简单的表示法,其符号位用0表示正号，用1表示负号，数值一般用二进制形式表示。</p>
+<h2 id="关于反码："><a href="#关于反码：" class="headerlink" title="关于反码："></a>关于反码：</h2><p>机器数的反码可由原码得到,如果机器数是正数，则该机器数的反码与原码一样；如果机器数是负数，则该机器数的反码是对它的原码（符号位除外）各位取反而得到的。</p>
+<h2 id="关于补码："><a href="#关于补码：" class="headerlink" title="关于补码："></a>关于补码：</h2><h3 id="1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算"><a href="#1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算" class="headerlink" title="1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算"></a>1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算</h3><p>比如对于一个计算式：<script type="math/tex">16+(-8)=?</script></p>
+<p>如果直接用原码相加：</p>
+<script type="math/tex; mode=display">\frac{\quad0\quad0\quad0\quad1\quad0\quad0\quad0\quad0\\+\,1\quad0\quad0\quad0\quad1\quad0\quad0\quad0}{\quad1\quad0\quad0\quad1\quad1\quad0\quad0\quad0}</script><p>可以看到，如果按照正常的加法规则，就会得到<script type="math/tex">1001,1000</script>的结果，转成十进制就是<script type="math/tex">-24</script>。显然，这是错误的答案。也就是说，在这种情况下，原码的加法规则不适用于正数与负数的加法，而且对于负数加负数，直接使用原码计算也会出错。</p>
+<p>再看看用补码相加：</p>
+<script type="math/tex; mode=display">\frac{\quad0\quad0\quad0\quad1\quad0\quad0\quad0\quad0\\+\,1\quad1\quad1\quad1\quad1\quad0\quad0\quad0}{1\ \:\,0\quad0\quad0\quad0\quad1\quad0\quad0\quad0}</script><p>可以看到，按照正常的加法规则，得到的结果是<script type="math/tex">1,0000,1000</script>。注意，这是一个<script type="math/tex">9</script>位的二进制数。我们已经假定这是一台8位机，因此最高的第<script type="math/tex">9</script>位是一个溢出位，会被自动舍去。所以结果就变成了<script type="math/tex">0000,1000</script>（这里得到的是补码），转成十进制正好是8。这说明了，补码表示法可以将加法运算规则扩展到整个整数集，从而用一套规则就可以实现全部整数的加法。</p>
+<h3 id="2、正数的补码不变，负数的补码用模减去绝对值"><a href="#2、正数的补码不变，负数的补码用模减去绝对值" class="headerlink" title="2、正数的补码不变，负数的补码用模减去绝对值"></a>2、正数的补码不变，负数的补码用模减去绝对值</h3><p>模是指一个计量系统的计数范围。如时钟等。计算机也可以看成一个计量机器，它也有一个计量范围，即都存在一个“模”。例如：<br>时钟的计量范围是<script type="math/tex">0～11</script>，模 <script type="math/tex">=12</script>。表示n位的计算机计量范围是<script type="math/tex">0～2^{2}-1</script>，模<script type="math/tex">=2^{n}</script>。</p>
+<p>假设当前时间为3点，而时钟上显示的时间为5点，那么调整到正确时间可以往后前调2小时，也可以往后调10小时，这样-2和+10对时钟而言其作用是一致的。在数学上称12为模，写作 mod 12 ，而称-2是+10以12为模的补数，<font color="red">或-2和+10关于模12同余</font>，记作：</p>
+<script type="math/tex; mode=display">-2 ≡ 10\quad mod\ 12</script><p>进一步分析发现， <font color="red">往后调</font>3小时、15小时、27小时…对时钟而言其作用是一样的， 即:</p>
+<script type="math/tex; mode=display">3 ≡ 15 ≡  27\quad mod\ 12</script><p>对于正数，其补数等于这个数加上模，再对模求余，即正数相对于模的补数就是正数本身；</p>
+<p>对于负数，在时钟上，表示逆时针旋转将分针旋转 <script type="math/tex">|A|</script> 圈，但由于时钟本身是顺时针旋转的，且顺时针旋转<script type="math/tex">M-|A|</script>圈，也能指向和逆时针旋转<script type="math/tex">|A|</script>圈一样的位置，所以负数可以用其正补数来代替，即运算中都是加法），即：</p>
+<script type="math/tex; mode=display">t-A=t+(-A)_{补}=t+(M-|-A|)=t+(M-A) \qquad其中A为正数</script><p>由此可见：</p>
+<ul>
+<li><p>1、一个负数可以用它的正补数来代替，而这个正补数可以用模加上负数本身（或模减去其绝对值）求得；</p>
+</li>
+<li><p>2、一个正数和一个负数互为补数时，它们的绝对值之和即为模数；</p>
+</li>
+<li><p>3、正数的补数还是该正数本身。</p>
+</li>
+</ul>
+<p><font color="red">将补数的概念，引申到计算机中，就出现了补码这种机器码。</font>因此，正数的补码不变，负数的补码用模减去其绝对值</p>
+<h3 id="3、原码、反码、补码对比"><a href="#3、原码、反码、补码对比" class="headerlink" title="3、原码、反码、补码对比"></a>3、原码、反码、补码对比</h3><p>8位原码和反码能够表示数的范围是 <script type="math/tex">-127～127</script>，8位补码能够表示数的范围是 <script type="math/tex">-128～127</script>。</p>
+<p>对于机器数-8在8位系统（mod <script type="math/tex">2^{8}=256</script>）中：</p>
+<ul>
+<li><p>其原码为：<script type="math/tex">1000,1000</script></p>
+</li>
+<li><p>其反码为：<script type="math/tex">1111,0111</script></p>
+</li>
+<li><p>其补码为：<script type="math/tex">1111,1000</script></p>
+</li>
+<li><p>其补数为：模 <script type="math/tex">-|-8|=248</script></p>
+</li>
+</ul>
+<p>这里的原码和反码的第八位是符号位，其表示范围为<script type="math/tex">[-127, -0]</script>和<script type="math/tex">[+0, 127]</script></p>
+<p>而补码实际上是没有符号位的，将负数用补码表示，实际上是实现了一种从<script type="math/tex">[-128, 127]</script>到<script type="math/tex">[0, 255]</script>的映射。如下所示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>补数</th>
+<th style="text-align:left">机器数</th>
+<th style="text-align:left">补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>255</td>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">1111,1111</td>
+</tr>
+<tr>
+<td>254</td>
+<td style="text-align:left">-2</td>
+<td style="text-align:left">1111,1110</td>
+</tr>
+<tr>
+<td>253</td>
+<td style="text-align:left">-3</td>
+<td style="text-align:left">1111,1101</td>
+</tr>
+<tr>
+<td>252</td>
+<td style="text-align:left">-4</td>
+<td style="text-align:left">1111,1100</td>
+</tr>
+<tr>
+<td>251</td>
+<td style="text-align:left">-5</td>
+<td style="text-align:left">1111,1011</td>
+</tr>
+<tr>
+<td><font color="red">248</font></td>
+<td style="text-align:left"><font color="red">-8</font></td>
+<td style="text-align:left"><font color="red">1111,1000</font></td>
+</tr>
+<tr>
+<td>246</td>
+<td style="text-align:left">-10</td>
+<td style="text-align:left">1111,0110</td>
+</tr>
+<tr>
+<td>236</td>
+<td style="text-align:left">-20</td>
+<td style="text-align:left">1110,1100</td>
+</tr>
+<tr>
+<td>226</td>
+<td style="text-align:left">-30</td>
+<td style="text-align:left">1110,0010</td>
+</tr>
+<tr>
+<td>216</td>
+<td style="text-align:left">-40</td>
+<td style="text-align:left">1101,1000</td>
+</tr>
+<tr>
+<td>206</td>
+<td style="text-align:left">-50</td>
+<td style="text-align:left">1100,1110</td>
+</tr>
+<tr>
+<td>196</td>
+<td style="text-align:left">-60</td>
+<td style="text-align:left">1100,0100</td>
+</tr>
+<tr>
+<td>186</td>
+<td style="text-align:left">-70</td>
+<td style="text-align:left">1011,1010</td>
+</tr>
+<tr>
+<td>156</td>
+<td style="text-align:left">-100</td>
+<td style="text-align:left">1001,1100</td>
+</tr>
+<tr>
+<td>129</td>
+<td style="text-align:left">-127</td>
+<td style="text-align:left">1000,0001</td>
+</tr>
+<tr>
+<td><font color="red">128</font></td>
+<td style="text-align:left"><font color="red">-128</font></td>
+<td style="text-align:left"><font color="red">1000,0000</font></td>
+</tr>
+<tr>
+<td>127</td>
+<td style="text-align:left">127</td>
+<td style="text-align:left">0111,1111</td>
+</tr>
+<tr>
+<td>100</td>
+<td style="text-align:left">100</td>
+<td style="text-align:left">0110,0100</td>
+</tr>
+<tr>
+<td>70</td>
+<td style="text-align:left">70</td>
+<td style="text-align:left">0100,0110</td>
+</tr>
+<tr>
+<td>60</td>
+<td style="text-align:left">60</td>
+<td style="text-align:left">0011,1100</td>
+</tr>
+<tr>
+<td>50</td>
+<td style="text-align:left">50</td>
+<td style="text-align:left">0011,0010</td>
+</tr>
+<tr>
+<td>40</td>
+<td style="text-align:left">40</td>
+<td style="text-align:left">0010,1000</td>
+</tr>
+<tr>
+<td>30</td>
+<td style="text-align:left">30</td>
+<td style="text-align:left">0001,1110</td>
+</tr>
+<tr>
+<td>20</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">0001,0100</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">0000,1010</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">0000,0101</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">0000,0100</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">0000,0011</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">0000,0010</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">0000,0001</td>
+</tr>
+<tr>
+<td>0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0000,0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="4、关于-128的补码"><a href="#4、关于-128的补码" class="headerlink" title="4、关于-128的补码"></a>4、关于-128的补码</h3><p>-128是一个负数，所以它的补码是它的“模”减去它的绝对值，即：</p>
+<script type="math/tex; mode=display">1,0000,0000 - 1000,0000 = 1000,0000</script><p>对于-128，它只有反补码，没有原码和反码。</p>
+<h3 id="5、为什么负数的补码等于源码的反码加一"><a href="#5、为什么负数的补码等于源码的反码加一" class="headerlink" title="5、为什么负数的补码等于源码的反码加一"></a>5、为什么负数的补码等于源码的反码加一</h3><p>可以这样推导：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1,0000,0000 - 0xxx,xxxx //对于负数1xxx,xxxx 其绝对值为0xxx,xxxx 模减去绝对值，即补码</span><br><span class="line">= (1111,1111 + 0000,0001) - 0xxx,xxxx </span><br><span class="line">= 1111,1111 - 1xxx,xxxx + 0000,0001 </span><br><span class="line">= 1yyy,yyyy + 0000,0001 //反码加一</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/09/linux-environment-variables/" rel="next" title="Linux环境变量">
+                <i class="fa fa-chevron-left"></i> Linux环境变量
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Bicheng Hu" />
+            
+              <p class="site-author-name" itemprop="name">Bicheng Hu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/bichenghu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hbcdec@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于原码："><span class="nav-number">1.</span> <span class="nav-text">关于原码：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于反码："><span class="nav-number">2.</span> <span class="nav-text">关于反码：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于补码："><span class="nav-number">3.</span> <span class="nav-text">关于补码：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算"><span class="nav-number">3.1.</span> <span class="nav-text">1、计算机里面，只有加法器，没有减法器，所有的减法运算，都必须用加法进行，而直接使用原码的加法规则不能适应全部运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、正数的补码不变，负数的补码用模减去绝对值"><span class="nav-number">3.2.</span> <span class="nav-text">2、正数的补码不变，负数的补码用模减去绝对值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、原码、反码、补码对比"><span class="nav-number">3.3.</span> <span class="nav-text">3、原码、反码、补码对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、关于-128的补码"><span class="nav-number">3.4.</span> <span class="nav-text">4、关于-128的补码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、为什么负数的补码等于源码的反码加一"><span class="nav-number">3.5.</span> <span class="nav-text">5、为什么负数的补码等于源码的反码加一</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bicheng Hu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
