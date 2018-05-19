@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="1、下载Office2016部署工具 https://www.microsoft.com/en-us/download/confirmation.aspx?id=491172、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;3、虚拟光驱加载Office2016 iso镜像文件到E（或其他">
+<meta name="description" content="1、下载Office2016部署工具点击下载 2、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;3、虚拟光驱加载Office2016 iso镜像文件到E（或其他）盘;4、若只需要Word Excel PowerPoint三个软件，则修改配置文件如下:123456789101112131">
 <meta name="keywords" content="windows,office,software">
 <meta property="og:type" content="article">
 <meta property="og:title" content="office 2016自定义安装">
 <meta property="og:url" content="https://bichenghu.github.io/2017/07/08/office-2016-custom- installation/index.html">
 <meta property="og:site_name" content="bichenghu.github.io">
-<meta property="og:description" content="1、下载Office2016部署工具 https://www.microsoft.com/en-us/download/confirmation.aspx?id=491172、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;3、虚拟光驱加载Office2016 iso镜像文件到E（或其他">
+<meta property="og:description" content="1、下载Office2016部署工具点击下载 2、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;3、虚拟光驱加载Office2016 iso镜像文件到E（或其他）盘;4、若只需要Word Excel PowerPoint三个软件，则修改配置文件如下:123456789101112131">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T09:28:28.836Z">
+<meta property="og:updated_time" content="2018-05-15T09:31:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="office 2016自定义安装">
-<meta name="twitter:description" content="1、下载Office2016部署工具 https://www.microsoft.com/en-us/download/confirmation.aspx?id=491172、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;3、虚拟光驱加载Office2016 iso镜像文件到E（或其他">
+<meta name="twitter:description" content="1、下载Office2016部署工具点击下载 2、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;3、虚拟光驱加载Office2016 iso镜像文件到E（或其他）盘;4、若只需要Word Excel PowerPoint三个软件，则修改配置文件如下:123456789101112131">
 
 
 
@@ -344,7 +344,8 @@
       
 
       
-        <p>1、下载Office2016部署工具 <a href="https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117</a><br>2、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;<br>3、虚拟光驱加载Office2016 iso镜像文件到E（或其他）盘;<br>4、若只需要Word Excel PowerPoint三个软件，则修改配置文件如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Configuration&gt;</span><br><span class="line">&lt;Add SourcePath=&quot;E:\&quot; OfficeClientEdition=&quot;64&quot; &gt;</span><br><span class="line">    &lt;Product ID=&quot;ProPlusRetail&quot;&gt;</span><br><span class="line">      &lt;Language ID=&quot;zh-CN&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Access&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Groove&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;InfoPath&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Lync&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;OneNote&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Outlook&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Publisher&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;SharePointDesigner&quot; /&gt;</span><br><span class="line">    &lt;/Product&gt;</span><br><span class="line">  &lt;/Add&gt;  </span><br><span class="line">&lt;/Configuration&gt;</span><br></pre></td></tr></table></figure></p>
+        <p>1、下载Office2016部署工具<a href="https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117" target="_blank" rel="noopener">点击下载</a></p>
+<p>2、双击下载的工具，勾选“Click here to…”，点击“Continue”， 释放两个文件（setup.exe和configuration.xml）到桌面;<br>3、虚拟光驱加载Office2016 iso镜像文件到E（或其他）盘;<br>4、若只需要Word Excel PowerPoint三个软件，则修改配置文件如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Configuration&gt;</span><br><span class="line">&lt;Add SourcePath=&quot;E:\&quot; OfficeClientEdition=&quot;64&quot; &gt;</span><br><span class="line">    &lt;Product ID=&quot;ProPlusRetail&quot;&gt;</span><br><span class="line">      &lt;Language ID=&quot;zh-CN&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Access&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Groove&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;InfoPath&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Lync&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;OneNote&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Outlook&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;Publisher&quot; /&gt;</span><br><span class="line"> &lt;ExcludeApp ID=&quot;SharePointDesigner&quot; /&gt;</span><br><span class="line">    &lt;/Product&gt;</span><br><span class="line">  &lt;/Add&gt;  </span><br><span class="line">&lt;/Configuration&gt;</span><br></pre></td></tr></table></figure></p>
 <p>5、进入命令提示符:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd Desktop</span><br><span class="line">setup.exe /configure configuration.xml</span><br></pre></td></tr></table></figure></p>
 
       
