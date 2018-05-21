@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="bichenghu.github.io">
 <meta property="og:description" content="1、复制命令1234567891011121314#将dirName1目录下a文件复制到dirName2目录下cp dirName1/a dirName2/#将dir1目录下a,b,c文件复制到dir2目录下cp dirName1/a b c dirName2#将dirName1目录下a文件复制到dirName2目录下并命名为bcp dirName1/a dirName2/b#将dirName1目">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-21T11:13:21.000Z">
+<meta property="og:updated_time" content="2018-05-21T11:38:50.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用命令总结">
 <meta name="twitter:description" content="1、复制命令1234567891011121314#将dirName1目录下a文件复制到dirName2目录下cp dirName1/a dirName2/#将dir1目录下a,b,c文件复制到dir2目录下cp dirName1/a b c dirName2#将dirName1目录下a文件复制到dirName2目录下并命名为bcp dirName1/a dirName2/b#将dirName1目">
@@ -336,20 +336,33 @@
 <li><p>3.2 rar</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#压缩dirName目录下的所有文件和文件夹到当前目录下的a.rar</span><br><span class="line">rar a a.rar dirName/ </span><br><span class="line">#压缩dirName1和dirName2目录下的所有文件和文件夹到当前目录下的a.rar</span><br><span class="line">rar a a.rar dirName1/ dirName2/</span><br><span class="line"></span><br><span class="line">#解压a.rar到当前目录</span><br><span class="line">rar e a.rar</span><br><span class="line">#解压a.rar到dirName目录     </span><br><span class="line">rar x a.rar dirName/</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>3.3 tar<br>tar（Tape ARchive，磁带归档的缩写；最初设计用于将文件打包到磁带上，现在我们大都使用它来实现备份某个分区或者某些重要的目录）是类 Unix 系统中使用最广泛的命令，用于归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用 gzip 或者 bzip2 等技术进行压缩。<br>tar命令语法为：<figure class="highlight plain"><figcaption><span><主选项+辅选项> <归档文件名> <文件或目录>```其中主选项是必须要有的，辅选项可以选用</文件或目录></归档文件名></主选项+辅选项></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">以下是tar命令的一些常用选项</span><br><span class="line">&gt;**主选项**</span><br><span class="line">&gt;-c 建立新的归档文件</span><br><span class="line">&gt;-r 将文件追加到归档文件中</span><br><span class="line">&gt;-t 查看归档文件内容</span><br><span class="line">&gt;-u 将已更新的文件追加到原归档文件中</span><br><span class="line">&gt;-x 解压</span><br><span class="line">&gt;**辅选项**</span><br><span class="line">&gt;-z 用gzip来压缩/解压文件（xxx.tar.gz）</span><br><span class="line">&gt;-Z 用compress来压缩/解压文件（xxx.tar.Z）</span><br><span class="line">&gt;-j 用bz2来压缩/解压文件（xxx.tar.bz2）</span><br><span class="line">&gt;-J 用xz来压缩/解压文件（xxx.tar.xz）</span><br><span class="line">&gt;-v 显示所有压缩/解压过程</span><br><span class="line">&gt;**-f选项**</span><br><span class="line">&gt;-f表示&lt;font color=red&gt;指定归档文件名&lt;/font&gt;，这个参数必须为最后一个参数，后面只能归档文件名</span><br><span class="line"></span><br><span class="line">- 常用压缩命令</span><br></pre></td></tr></table></figure></p>
+<li><p>3.3 tar<br>tar（Tape ARchive，磁带归档的缩写；最初设计用于将文件打包到磁带上，现在我们大都使用它来实现备份某个分区或者某些重要的目录）是类 Unix 系统中使用最广泛的命令，用于归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用 gzip 或者 bzip2 等技术进行压缩。<br>tar命令语法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar &lt;主选项+辅选项&gt; &lt;归档文件名&gt; &lt;文件或目录&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="将当前目录所有-jpg的文件压缩成一个名为xxx-tar的包"><a href="#将当前目录所有-jpg的文件压缩成一个名为xxx-tar的包" class="headerlink" title="将当前目录所有.jpg的文件压缩成一个名为xxx.tar的包"></a>将当前目录所有.jpg的文件压缩成一个名为xxx.tar的包</h1><p>tar -cf xxx.tar *.jpg</p>
-<h1 id="将当前目录所有-gif的文件增加到xxx-tar的包里面去"><a href="#将当前目录所有-gif的文件增加到xxx-tar的包里面去" class="headerlink" title="将当前目录所有.gif的文件增加到xxx.tar的包里面去"></a>将当前目录所有.gif的文件增加到xxx.tar的包里面去</h1><p>tar -rf xxx.tar *.gif</p>
-<h1 id="用当前目录的logo-gif文件更新原来tar包xxx-tar中logo-gif文件"><a href="#用当前目录的logo-gif文件更新原来tar包xxx-tar中logo-gif文件" class="headerlink" title="用当前目录的logo.gif文件更新原来tar包xxx.tar中logo.gif文件"></a>用当前目录的logo.gif文件更新原来tar包xxx.tar中logo.gif文件</h1><p>tar -uf xxx.tar logo.gif</p>
-<h1 id="创建并压缩归档文件（-tar-gz-或-tgz）"><a href="#创建并压缩归档文件（-tar-gz-或-tgz）" class="headerlink" title="创建并压缩归档文件（.tar.gz 或 .tgz）"></a>创建并压缩归档文件（.tar.gz 或 .tgz）</h1><h1 id="假设我们需要打包-dir1-和-dir2-文件夹，并用gzip工具将其压缩。可以在tar命令中使用-z-选项来实现。这种tar文件的扩展名可以是-tar-gz-或者-tgz"><a href="#假设我们需要打包-dir1-和-dir2-文件夹，并用gzip工具将其压缩。可以在tar命令中使用-z-选项来实现。这种tar文件的扩展名可以是-tar-gz-或者-tgz" class="headerlink" title="假设我们需要打包 /dir1 和 /dir2 文件夹，并用gzip工具将其压缩。可以在tar命令中使用 -z 选项来实现。这种tar文件的扩展名可以是 .tar.gz 或者 .tgz"></a>假设我们需要打包 /dir1 和 /dir2 文件夹，并用gzip工具将其压缩。可以在tar命令中使用 -z 选项来实现。这种tar文件的扩展名可以是 .tar.gz 或者 .tgz</h1><p>tar -zcpvf xxx.tar.gz /dir1/ /dir2/<br>tar -zcpvf xxx.tgz /dir1/ /dir2/</p>
-<h1 id="创建并压缩归档文件（-tar-bz2-或-tbz2）"><a href="#创建并压缩归档文件（-tar-bz2-或-tbz2）" class="headerlink" title="创建并压缩归档文件（.tar.bz2 或 .tbz2）"></a>创建并压缩归档文件（.tar.bz2 或 .tbz2）</h1><h1 id="假设我们需要打包-dir1和-dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用-j-选项来实现。这种tar文件的扩展名可以是-tar-bz3-或者-tbz2"><a href="#假设我们需要打包-dir1和-dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用-j-选项来实现。这种tar文件的扩展名可以是-tar-bz3-或者-tbz2" class="headerlink" title="假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -j 选项来实现。这种tar文件的扩展名可以是 .tar.bz3 或者 .tbz2"></a>假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -j 选项来实现。这种tar文件的扩展名可以是 .tar.bz3 或者 .tbz2</h1><p>tar -jcpvf xxx.tar.bz2 /dir1/ /dir2/<br>tar -jcpvf xxx.tbz2 /dir1/ /dir2/</p>
-<h1 id="创建并压缩归档文件（-tar-xz-或-txz）"><a href="#创建并压缩归档文件（-tar-xz-或-txz）" class="headerlink" title="创建并压缩归档文件（.tar.xz 或 .txz）"></a>创建并压缩归档文件（.tar.xz 或 .txz）</h1><h1 id="假设我们需要打包-dir1和-dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用-J-选项来实现。这种tar文件的扩展名可以是-tar-xz-或者-txz"><a href="#假设我们需要打包-dir1和-dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用-J-选项来实现。这种tar文件的扩展名可以是-tar-xz-或者-txz" class="headerlink" title="假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -J 选项来实现。这种tar文件的扩展名可以是 .tar.xz 或者 .txz"></a>假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -J 选项来实现。这种tar文件的扩展名可以是 .tar.xz 或者 .txz</h1><p>tar -Jcpvf xxx.tar.xz /dir1/ /dir2/<br>tar -Jcpvf xxx.txz /dir1/ /dir2/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 常用解压命令</span><br></pre></td></tr></table></figure></p>
-<h1 id="解压出xxx-tar-gz-Z-bz2-xz-包中所有文件到当前目录"><a href="#解压出xxx-tar-gz-Z-bz2-xz-包中所有文件到当前目录" class="headerlink" title="解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到当前目录"></a>解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到当前目录</h1><p>tar -(z/Z/j/J)xvf xxx.tar(.gz/.Z/.bz2/.xz)</p>
-<h1 id="解压出xxx-tar-gz-Z-bz2-xz-包中所有文件到指定目录dirName"><a href="#解压出xxx-tar-gz-Z-bz2-xz-包中所有文件到指定目录dirName" class="headerlink" title="解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到指定目录dirName"></a>解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到指定目录dirName</h1><p>tar -(z/Z/j/J)xvf xxx.tar(.gz/.Z/.bz2/.xz) -C dirName/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 列出命令</span><br></pre></td></tr></table></figure></p>
-<h1 id="列出xxx-tar-gz-Z-bz2-xz-包中所有文件和目录"><a href="#列出xxx-tar-gz-Z-bz2-xz-包中所有文件和目录" class="headerlink" title="列出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件和目录"></a>列出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件和目录</h1><p>tar -(z/Z/j/J)tvf xxx.tar(.gz/.Z/.bz2/.xz)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**4、卸载命令**</span><br><span class="line">- 查询</span><br></pre></td></tr></table></figure></p>
-<p>dpkg —get-selections | grep xxx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 卸载</span><br></pre></td></tr></table></figure></p>
-<p>sudo apt-get purge xxx<br>```</p>
+<blockquote>
+<p><strong>主选项</strong><br>-c 建立新的归档文件<br>-r 将文件追加到归档文件中<br>-t 查看归档文件内容<br>-u 将已更新的文件追加到原归档文件中<br>-x 解压<br><strong>辅选项</strong><br>-z 用gzip来压缩/解压文件（xxx.tar.gz）<br>-Z 用compress来压缩/解压文件（xxx.tar.Z）<br>-j 用bz2来压缩/解压文件（xxx.tar.bz2）<br>-J 用xz来压缩/解压文件（xxx.tar.xz）<br>-v 显示所有压缩/解压过程<br><strong>-f选项</strong><br>-f表示<font color="red">指定归档文件名</font>，这个参数必须为最后一个参数，后面只能归档文件名</p>
+</blockquote>
+<ul>
+<li><p>常用压缩命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#将当前目录所有.jpg的文件压缩成一个名为xxx.tar的包</span><br><span class="line">tar -cf xxx.tar *.jpg</span><br><span class="line"></span><br><span class="line">#将当前目录所有.gif的文件增加到xxx.tar的包里面去</span><br><span class="line">tar -rf xxx.tar *.gif</span><br><span class="line"></span><br><span class="line">#用当前目录的logo.gif文件更新原来tar包xxx.tar中logo.gif文件</span><br><span class="line">tar -uf xxx.tar logo.gif</span><br><span class="line"></span><br><span class="line">#创建并压缩归档文件（.tar.gz 或 .tgz）</span><br><span class="line">#假设我们需要打包 /dir1 和 /dir2 文件夹，并用gzip工具将其压缩。可以在tar命令中使用 -z 选项来实现。这种tar文件的扩展名可以是 .tar.gz 或者 .tgz</span><br><span class="line">tar -zcpvf xxx.tar.gz /dir1/ /dir2/</span><br><span class="line">tar -zcpvf xxx.tgz /dir1/ /dir2/</span><br><span class="line"></span><br><span class="line">#创建并压缩归档文件（.tar.bz2 或 .tbz2）</span><br><span class="line">#假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -j 选项来实现。这种tar文件的扩展名可以是 .tar.bz3 或者 .tbz2</span><br><span class="line">tar -jcpvf xxx.tar.bz2 /dir1/ /dir2/</span><br><span class="line">tar -jcpvf xxx.tbz2 /dir1/ /dir2/</span><br><span class="line"></span><br><span class="line">#创建并压缩归档文件（.tar.xz 或 .txz）</span><br><span class="line">#假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -J 选项来实现。这种tar文件的扩展名可以是 .tar.xz 或者 .txz</span><br><span class="line">tar -Jcpvf xxx.tar.xz /dir1/ /dir2/</span><br><span class="line">tar -Jcpvf xxx.txz /dir1/ /dir2/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常用解压命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到当前目录</span><br><span class="line">tar -(z/Z/j/J)xvf xxx.tar(.gz/.Z/.bz2/.xz)</span><br><span class="line"></span><br><span class="line">#解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到指定目录dirName</span><br><span class="line">tar -(z/Z/j/J)xvf xxx.tar(.gz/.Z/.bz2/.xz) -C dirName/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#列出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件和目录</span><br><span class="line">tar -(z/Z/j/J)tvf xxx.tar(.gz/.Z/.bz2/.xz)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>4、卸载命令</strong></p>
+<ul>
+<li><p>查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg --get-selections | grep xxx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge xxx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -446,17 +459,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -536,22 +540,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将当前目录所有-jpg的文件压缩成一个名为xxx-tar的包"><span class="nav-number">1.</span> <span class="nav-text">将当前目录所有.jpg的文件压缩成一个名为xxx.tar的包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将当前目录所有-gif的文件增加到xxx-tar的包里面去"><span class="nav-number">2.</span> <span class="nav-text">将当前目录所有.gif的文件增加到xxx.tar的包里面去</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用当前目录的logo-gif文件更新原来tar包xxx-tar中logo-gif文件"><span class="nav-number">3.</span> <span class="nav-text">用当前目录的logo.gif文件更新原来tar包xxx.tar中logo.gif文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建并压缩归档文件（-tar-gz-或-tgz）"><span class="nav-number">4.</span> <span class="nav-text">创建并压缩归档文件（.tar.gz 或 .tgz）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#假设我们需要打包-dir1-和-dir2-文件夹，并用gzip工具将其压缩。可以在tar命令中使用-z-选项来实现。这种tar文件的扩展名可以是-tar-gz-或者-tgz"><span class="nav-number">5.</span> <span class="nav-text">假设我们需要打包 /dir1 和 /dir2 文件夹，并用gzip工具将其压缩。可以在tar命令中使用 -z 选项来实现。这种tar文件的扩展名可以是 .tar.gz 或者 .tgz</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建并压缩归档文件（-tar-bz2-或-tbz2）"><span class="nav-number">6.</span> <span class="nav-text">创建并压缩归档文件（.tar.bz2 或 .tbz2）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#假设我们需要打包-dir1和-dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用-j-选项来实现。这种tar文件的扩展名可以是-tar-bz3-或者-tbz2"><span class="nav-number">7.</span> <span class="nav-text">假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -j 选项来实现。这种tar文件的扩展名可以是 .tar.bz3 或者 .tbz2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建并压缩归档文件（-tar-xz-或-txz）"><span class="nav-number">8.</span> <span class="nav-text">创建并压缩归档文件（.tar.xz 或 .txz）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#假设我们需要打包-dir1和-dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用-J-选项来实现。这种tar文件的扩展名可以是-tar-xz-或者-txz"><span class="nav-number">9.</span> <span class="nav-text">假设我们需要打包/dir1和/dir2文件夹，并用bzip2工具将其压缩。可以在tar命令中使用 -J 选项来实现。这种tar文件的扩展名可以是 .tar.xz 或者 .txz</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解压出xxx-tar-gz-Z-bz2-xz-包中所有文件到当前目录"><span class="nav-number">10.</span> <span class="nav-text">解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到当前目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解压出xxx-tar-gz-Z-bz2-xz-包中所有文件到指定目录dirName"><span class="nav-number">11.</span> <span class="nav-text">解压出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件到指定目录dirName</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列出xxx-tar-gz-Z-bz2-xz-包中所有文件和目录"><span class="nav-number">12.</span> <span class="nav-text">列出xxx.tar(.gz/.Z/.bz2/.xz)包中所有文件和目录</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
