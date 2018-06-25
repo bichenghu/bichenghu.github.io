@@ -53,13 +53,7 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/github.png?v=5.1.4">
 
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/github.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/github.png?v=5.1.4">
 
 
 
@@ -77,17 +71,17 @@
 
 
 
-<meta name="description" content="Git提交时有Https和SSH两种验证方式，Https方式除了速度慢以外，在每次提交时还需要输入帐号和密码；而使用SSH可以生成一个公钥-私钥对，我们会把公钥添加到Git的服务器，把私钥放在本地。提交文件的时候Git服务器会用公钥和客户端提交私钥做验证，如果验证通过则提交成功。 对于Github添加公钥有以下几种情况：1.单个Github用户推送单个Github用户；2.单个Github用户推送">
+<meta name="description" content="首先需要设置git用户信息12git config --global user.name &amp;quot;yourname&amp;quot;git config --global user.email &amp;quot;youremail&amp;quot; 一、对于单个SSH key1、执行cd ~/.ssh命令，如果存在该目录，表明之前生成过SSH Key，利用ll命令即可以查看12cd ~/.sshll 2、若没有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Github添加公钥">
 <meta property="og:url" content="https://bichenghu.github.io/2017/11/23/github-add-ssh/index.html">
-<meta property="og:site_name" content="Bicheng&#39;s Blog">
-<meta property="og:description" content="Git提交时有Https和SSH两种验证方式，Https方式除了速度慢以外，在每次提交时还需要输入帐号和密码；而使用SSH可以生成一个公钥-私钥对，我们会把公钥添加到Git的服务器，把私钥放在本地。提交文件的时候Git服务器会用公钥和客户端提交私钥做验证，如果验证通过则提交成功。 对于Github添加公钥有以下几种情况：1.单个Github用户推送单个Github用户；2.单个Github用户推送">
+<meta property="og:site_name" content="bichenghu.github.io">
+<meta property="og:description" content="首先需要设置git用户信息12git config --global user.name &amp;quot;yourname&amp;quot;git config --global user.email &amp;quot;youremail&amp;quot; 一、对于单个SSH key1、执行cd ~/.ssh命令，如果存在该目录，表明之前生成过SSH Key，利用ll命令即可以查看12cd ~/.sshll 2、若没有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-04T08:19:08.095Z">
+<meta property="og:updated_time" content="2018-05-09T09:25:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Github添加公钥">
-<meta name="twitter:description" content="Git提交时有Https和SSH两种验证方式，Https方式除了速度慢以外，在每次提交时还需要输入帐号和密码；而使用SSH可以生成一个公钥-私钥对，我们会把公钥添加到Git的服务器，把私钥放在本地。提交文件的时候Git服务器会用公钥和客户端提交私钥做验证，如果验证通过则提交成功。 对于Github添加公钥有以下几种情况：1.单个Github用户推送单个Github用户；2.单个Github用户推送">
+<meta name="twitter:description" content="首先需要设置git用户信息12git config --global user.name &amp;quot;yourname&amp;quot;git config --global user.email &amp;quot;youremail&amp;quot; 一、对于单个SSH key1、执行cd ~/.ssh命令，如果存在该目录，表明之前生成过SSH Key，利用ll命令即可以查看12cd ~/.sshll 2、若没有">
 
 
 
@@ -123,7 +117,7 @@
 
 
 
-  <title>Github添加公钥 | Bicheng's Blog</title>
+  <title>Github添加公钥 | bichenghu.github.io</title>
   
 
 
@@ -153,7 +147,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Bicheng's Blog</span>
+        <span class="site-title">bichenghu.github.io</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -269,7 +263,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bicheng's Blog">
+      <meta itemprop="name" content="bichenghu.github.io">
     </span>
 
     
@@ -349,30 +343,17 @@
       
 
       
-        <p>Git提交时有Https和SSH两种验证方式，Https方式除了速度慢以外，在每次提交时还需要输入帐号和密码；而使用SSH可以生成一个公钥-私钥对，我们会把公钥添加到Git的服务器，把私钥放在本地。提交文件的时候Git服务器会用公钥和客户端提交私钥做验证，如果验证通过则提交成功。</p>
-<p>对于Github添加公钥有以下几种情况：<br>1.单个Github用户推送单个Github用户；<br>2.单个Github用户推送多个Github用户；<br>3.多个Github用户推送多个Github用户；</p>
-<h3 id="对于单个Github用户推送单个Github用户"><a href="#对于单个Github用户推送单个Github用户" class="headerlink" title="对于单个Github用户推送单个Github用户"></a>对于单个Github用户推送单个Github用户</h3><h4 id="1-首先需要设置git全局用户信息"><a href="#1-首先需要设置git全局用户信息" class="headerlink" title="1 首先需要设置git全局用户信息"></a>1 首先需要设置git全局用户信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourName&quot;</span><br><span class="line">git config --global user.email &quot;yourEmail&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="2-查看SSH版本，若没有输出，则需要安装SSH"><a href="#2-查看SSH版本，若没有输出，则需要安装SSH" class="headerlink" title="2 查看SSH版本，若没有输出，则需要安装SSH"></a>2 查看SSH版本，若没有输出，则需要安装SSH</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -V</span><br><span class="line">sudo apt-get install openssh-client openssh-server   #SSH安装命令</span><br></pre></td></tr></table></figure>
-<h4 id="3-生成新的SSH-key"><a href="#3-生成新的SSH-key" class="headerlink" title="3 生成新的SSH key"></a>3 生成新的SSH key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">#若没有id_rsa和id_rsa.pub 则可以使用默认生成命令</span><br><span class="line">ssh-keygen -t rsa -C &quot;some explanations&quot;</span><br><span class="line">#若之前已存在，可以自定义生成</span><br><span class="line">ssh-keygen -t rsa -C &quot;some explanations” -f ~/.ssh/id_rsa_new</span><br></pre></td></tr></table></figure>
-<p>在~/.ssh目录下有id_rsa/id_rsa_new（私钥）和 id_rsa.pub/id_rsa_new.pub（公钥）两个文件，其中.pub文件里存放的即是公钥key。</p>
-<h4 id="4-添加私钥"><a href="#4-添加私钥" class="headerlink" title="4 添加私钥"></a>4 添加私钥</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
-<h4 id="5-添加公钥"><a href="#5-添加公钥" class="headerlink" title="5 添加公钥"></a>5 添加公钥</h4><p>登录到GitHub，选择settings ，选择Add SSH key，把.pub的内容复制到里面即可。</p>
-<h4 id="6-测试"><a href="#6-测试" class="headerlink" title="6 测试"></a>6 测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">Hi xxx You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
-<p>如果有以上提示，说明公钥添加成功。</p>
-<h3 id="单个Github用户推送多个Github用户"><a href="#单个Github用户推送多个Github用户" class="headerlink" title="单个Github用户推送多个Github用户"></a>单个Github用户推送多个Github用户</h3><p>这种情况多用于同一个用户推送不同项目的仓库（如个人项目和工作项目）：</p>
-<h4 id="1-生成多个SSH-key"><a href="#1-生成多个SSH-key" class="headerlink" title="1 生成多个SSH key"></a>1 生成多个SSH key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;some explanations” -f ~/.ssh/id_rsa_p</span><br><span class="line">ssh-keygen -t rsa -C &quot;some explanations” -f ~/.ssh/id_rsa_w</span><br></pre></td></tr></table></figure>
-<h4 id="2-添加私钥"><a href="#2-添加私钥" class="headerlink" title="2 添加私钥"></a>2 添加私钥</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa_p</span><br><span class="line">ssh-add ~/.ssh/id_rsa_w</span><br></pre></td></tr></table></figure>
-<h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3 修改配置文件"></a>3 修改配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#personal</span><br><span class="line">Host personal </span><br><span class="line">HostName github.com </span><br><span class="line">User uesrname@example.com</span><br><span class="line">PreferredAuthentications publickey </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_p </span><br><span class="line">#work </span><br><span class="line">Host work </span><br><span class="line">HostName github.com</span><br><span class="line">User username@example.com</span><br><span class="line">PreferredAuthentications publickey </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_w</span><br></pre></td></tr></table></figure>
-<h4 id="4-添加不同公钥到对应GitHub账户"><a href="#4-添加不同公钥到对应GitHub账户" class="headerlink" title="4 添加不同公钥到对应GitHub账户"></a>4 添加不同公钥到对应GitHub账户</h4><h4 id="5-测试"><a href="#5-测试" class="headerlink" title="5 测试"></a>5 测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@personal  #git@Host</span><br><span class="line">Hi xxx You&apos;ve successfully authenticated, but GitHub does not provide shell access</span><br></pre></td></tr></table></figure>
-<p>如果有以上提示，说明连接成功。</p>
-<h3 id="对于多个Github用户推送多个Github用户"><a href="#对于多个Github用户推送多个Github用户" class="headerlink" title="对于多个Github用户推送多个Github用户"></a>对于多个Github用户推送多个Github用户</h3><p>这种情况多用于不同用户推送不同Github用户的仓库（个人账户到个人项目仓库，工作账户推送工作项目仓库），和配置单个Git用户的方式不同，这里我们需要为每个项目分别配置，所以要命令行进入仓库文件夹再设置。</p>
-<h4 id="1-生成多个SSH-key-1"><a href="#1-生成多个SSH-key-1" class="headerlink" title="1 生成多个SSH key"></a>1 生成多个SSH key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;some explanations” -f ~/.ssh/id_rsa_p2p</span><br><span class="line">ssh-keygen -t rsa -C &quot;some explanations” -f ~/.ssh/id_rsa_w2w</span><br></pre></td></tr></table></figure>
-<h4 id="2-添加私钥-1"><a href="#2-添加私钥-1" class="headerlink" title="2 添加私钥"></a>2 添加私钥</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa_p2p</span><br><span class="line">ssh-add ~/.ssh/id_rsa_w2w</span><br></pre></td></tr></table></figure>
-<h4 id="3-修改配置文件-1"><a href="#3-修改配置文件-1" class="headerlink" title="3 修改配置文件"></a>3 修改配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">vim config</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#personal to personal</span><br><span class="line">Host p2p </span><br><span class="line">HostName github.com </span><br><span class="line">User personalAccount@example.com  </span><br><span class="line">PreferredAuthentications publickey IdentityFile ~/.ssh/id_rsa_p2p </span><br><span class="line"></span><br><span class="line">#work to work</span><br><span class="line">Host w2w </span><br><span class="line">HostName github.com</span><br><span class="line">User workAccount@example.com</span><br><span class="line">PreferredAuthentications publickey IdentityFile ~/.ssh/id_rsa_w2w</span><br></pre></td></tr></table></figure>
-<h4 id="4-添加不同公钥到对应GitHub账户-1"><a href="#4-添加不同公钥到对应GitHub账户-1" class="headerlink" title="4 添加不同公钥到对应GitHub账户"></a>4 添加不同公钥到对应GitHub账户</h4><h4 id="5-添加局部用户信息"><a href="#5-添加局部用户信息" class="headerlink" title="5 添加局部用户信息"></a>5 添加局部用户信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd personalRepository</span><br><span class="line">git config --local user.name &quot;yourName&quot;</span><br><span class="line">git config --local user.email &quot;personalAccount@example.com&quot;</span><br><span class="line"></span><br><span class="line">cd workRepository</span><br><span class="line">git config --local user.name &quot;yourName&quot;</span><br><span class="line">git config --local user.email &quot;workAccount@example.com&quot;</span><br></pre></td></tr></table></figure>
-<p>其中全局用户信息存在~/.gitconfig中，局部用户信息存在对应仓库目录.git/config中。</p>
+        <p>首先需要设置git用户信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="一、对于单个SSH-key"><a href="#一、对于单个SSH-key" class="headerlink" title="一、对于单个SSH key"></a>一、对于单个SSH key</h2><h3 id="1、执行cd-ssh命令，如果存在该目录，表明之前生成过SSH-Key，利用ll命令即可以查看"><a href="#1、执行cd-ssh命令，如果存在该目录，表明之前生成过SSH-Key，利用ll命令即可以查看" class="headerlink" title="1、执行cd ~/.ssh命令，如果存在该目录，表明之前生成过SSH Key，利用ll命令即可以查看"></a>1、执行cd ~/.ssh命令，如果存在该目录，表明之前生成过SSH Key，利用ll命令即可以查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+<h3 id="2、若没有，则可以生成新的SSH-key"><a href="#2、若没有，则可以生成新的SSH-key" class="headerlink" title="2、若没有，则可以生成新的SSH key"></a>2、若没有，则可以生成新的SSH key</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;username@example.com&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="3、在-ssh目录下有-id-rsa（私钥）和-id-rsa-pub（公钥）两个文件，其中id-rsa-pub文件里存放的即是公钥key"><a href="#3、在-ssh目录下有-id-rsa（私钥）和-id-rsa-pub（公钥）两个文件，其中id-rsa-pub文件里存放的即是公钥key" class="headerlink" title="3、在~/.ssh目录下有 id_rsa（私钥）和 id_rsa.pub（公钥）两个文件，其中id_rsa.pub文件里存放的即是公钥key"></a>3、在~/.ssh目录下有 id_rsa（私钥）和 id_rsa.pub（公钥）两个文件，其中id_rsa.pub文件里存放的即是公钥key</h3><h3 id="4、添加私钥"><a href="#4、添加私钥" class="headerlink" title="4、添加私钥"></a>4、添加私钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<h3 id="5、登录到GitHub，点击右上方的头像，选择settings-，点击Add-SSH-key，把id-rsa-pub的内容复制到里面即可"><a href="#5、登录到GitHub，点击右上方的头像，选择settings-，点击Add-SSH-key，把id-rsa-pub的内容复制到里面即可" class="headerlink" title="5、登录到GitHub，点击右上方的头像，选择settings ，点击Add SSH key，把id_rsa.pub的内容复制到里面即可"></a>5、登录到GitHub，点击右上方的头像，选择settings ，点击Add SSH key，把id_rsa.pub的内容复制到里面即可</h3><h2 id="二、对于一台电脑针对多个Github账户添加多个公钥："><a href="#二、对于一台电脑针对多个Github账户添加多个公钥：" class="headerlink" title="二、对于一台电脑针对多个Github账户添加多个公钥："></a>二、对于一台电脑针对多个Github账户添加多个公钥：</h2><h3 id="1、生成多个SSH-key"><a href="#1、生成多个SSH-key" class="headerlink" title="1、生成多个SSH key"></a>1、生成多个SSH key</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;hbcdec@gmail.com” -f ~/.ssh/id1_rsa</span><br><span class="line">ssh-keygen -t rsa -C &quot;hbcdec@gmail.com” -f ~/.ssh/id2_rsa</span><br></pre></td></tr></table></figure>
+<h3 id="2、添加私钥"><a href="#2、添加私钥" class="headerlink" title="2、添加私钥"></a>2、添加私钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id1_rsa</span><br><span class="line">ssh-add ~/.ssh/id2_rsa</span><br></pre></td></tr></table></figure>
+<h3 id="3、修改配置文件"><a href="#3、修改配置文件" class="headerlink" title="3、修改配置文件"></a>3、修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#personal</span><br><span class="line">Host personal </span><br><span class="line">HostName github.com </span><br><span class="line">PreferredAuthentications publickey IdentityFile ~/.ssh/id1_rsa </span><br><span class="line">#work </span><br><span class="line">Host work </span><br><span class="line">HostName github.com </span><br><span class="line">PreferredAuthentications publickey IdentityFile ~/.ssh/id2_rsa</span><br></pre></td></tr></table></figure>
+<h3 id="4、添加不同公钥到对应GitHub账户"><a href="#4、添加不同公钥到对应GitHub账户" class="headerlink" title="4、添加不同公钥到对应GitHub账户"></a>4、添加不同公钥到对应GitHub账户</h3><h3 id="5、测试"><a href="#5、测试" class="headerlink" title="5、测试"></a>5、测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@personal</span><br></pre></td></tr></table></figure>
+<p>如果提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi xxx You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure></p>
+<p>说明连接成功。</p>
 
       
     </div>
@@ -512,7 +493,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -532,7 +513,7 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="mailto:hbcdec@gmail.com" target="_blank" title="Mail">
+                    <a href="mailto:bicheng.hu@qq.com" target="_blank" title="Mail">
                       
                         <i class="fa fa-fw fa-envelope"></i>Mail</a>
                   </span>
@@ -561,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#对于单个Github用户推送单个Github用户"><span class="nav-number">1.</span> <span class="nav-text">对于单个Github用户推送单个Github用户</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首先需要设置git全局用户信息"><span class="nav-number">1.1.</span> <span class="nav-text">1 首先需要设置git全局用户信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-查看SSH版本，若没有输出，则需要安装SSH"><span class="nav-number">1.2.</span> <span class="nav-text">2 查看SSH版本，若没有输出，则需要安装SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-生成新的SSH-key"><span class="nav-number">1.3.</span> <span class="nav-text">3 生成新的SSH key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-添加私钥"><span class="nav-number">1.4.</span> <span class="nav-text">4 添加私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-添加公钥"><span class="nav-number">1.5.</span> <span class="nav-text">5 添加公钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-测试"><span class="nav-number">1.6.</span> <span class="nav-text">6 测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单个Github用户推送多个Github用户"><span class="nav-number">2.</span> <span class="nav-text">单个Github用户推送多个Github用户</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-生成多个SSH-key"><span class="nav-number">2.1.</span> <span class="nav-text">1 生成多个SSH key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-添加私钥"><span class="nav-number">2.2.</span> <span class="nav-text">2 添加私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改配置文件"><span class="nav-number">2.3.</span> <span class="nav-text">3 修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-添加不同公钥到对应GitHub账户"><span class="nav-number">2.4.</span> <span class="nav-text">4 添加不同公钥到对应GitHub账户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-测试"><span class="nav-number">2.5.</span> <span class="nav-text">5 测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于多个Github用户推送多个Github用户"><span class="nav-number">3.</span> <span class="nav-text">对于多个Github用户推送多个Github用户</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-生成多个SSH-key-1"><span class="nav-number">3.1.</span> <span class="nav-text">1 生成多个SSH key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-添加私钥-1"><span class="nav-number">3.2.</span> <span class="nav-text">2 添加私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改配置文件-1"><span class="nav-number">3.3.</span> <span class="nav-text">3 修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-添加不同公钥到对应GitHub账户-1"><span class="nav-number">3.4.</span> <span class="nav-text">4 添加不同公钥到对应GitHub账户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-添加局部用户信息"><span class="nav-number">3.5.</span> <span class="nav-text">5 添加局部用户信息</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、对于单个SSH-key"><span class="nav-number">1.</span> <span class="nav-text">一、对于单个SSH key</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、执行cd-ssh命令，如果存在该目录，表明之前生成过SSH-Key，利用ll命令即可以查看"><span class="nav-number">1.1.</span> <span class="nav-text">1、执行cd ~/.ssh命令，如果存在该目录，表明之前生成过SSH Key，利用ll命令即可以查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、若没有，则可以生成新的SSH-key"><span class="nav-number">1.2.</span> <span class="nav-text">2、若没有，则可以生成新的SSH key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、在-ssh目录下有-id-rsa（私钥）和-id-rsa-pub（公钥）两个文件，其中id-rsa-pub文件里存放的即是公钥key"><span class="nav-number">1.3.</span> <span class="nav-text">3、在~/.ssh目录下有 id_rsa（私钥）和 id_rsa.pub（公钥）两个文件，其中id_rsa.pub文件里存放的即是公钥key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、添加私钥"><span class="nav-number">1.4.</span> <span class="nav-text">4、添加私钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、登录到GitHub，点击右上方的头像，选择settings-，点击Add-SSH-key，把id-rsa-pub的内容复制到里面即可"><span class="nav-number">1.5.</span> <span class="nav-text">5、登录到GitHub，点击右上方的头像，选择settings ，点击Add SSH key，把id_rsa.pub的内容复制到里面即可</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、对于一台电脑针对多个Github账户添加多个公钥："><span class="nav-number">2.</span> <span class="nav-text">二、对于一台电脑针对多个Github账户添加多个公钥：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、生成多个SSH-key"><span class="nav-number">2.1.</span> <span class="nav-text">1、生成多个SSH key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、添加私钥"><span class="nav-number">2.2.</span> <span class="nav-text">2、添加私钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、修改配置文件"><span class="nav-number">2.3.</span> <span class="nav-text">3、修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、添加不同公钥到对应GitHub账户"><span class="nav-number">2.4.</span> <span class="nav-text">4、添加不同公钥到对应GitHub账户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、测试"><span class="nav-number">2.5.</span> <span class="nav-text">5、测试</span></a></li></ol></li></ol></div>
             
 
           </div>
