@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLOv1、YOLOv2、YOLO9000、YOLOv3 4个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和">
+<meta name="description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLO、YOLO9000、YOLOv3 3个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和标签信息。 源码修">
 <meta name="keywords" content="yolo,object detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YOLO 检测多张图片并保存标签信息">
 <meta property="og:url" content="https://bichenghu.github.io/2018/06/15/yolo-save-labels/index.html">
 <meta property="og:site_name" content="bichenghu.github.io">
-<meta property="og:description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLOv1、YOLOv2、YOLO9000、YOLOv3 4个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和">
+<meta property="og:description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLO、YOLO9000、YOLOv3 3个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和标签信息。 源码修">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-25T16:05:47.064Z">
+<meta property="og:updated_time" content="2018-07-11T13:01:22.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLO 检测多张图片并保存标签信息">
-<meta name="twitter:description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLOv1、YOLOv2、YOLO9000、YOLOv3 4个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和">
+<meta name="twitter:description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLO、YOLO9000、YOLOv3 3个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和标签信息。 源码修">
 
 
 
@@ -344,7 +344,7 @@
       
 
       
-        <p><a href="https://pjreddie.com/darknet/yolo/]" target="_blank" rel="noopener">YOLO</a>是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLOv1、YOLOv2、YOLO9000、YOLOv3 4个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架<a href="https://pjreddie.com/darknet/" target="_blank" rel="noopener">darknet</a>实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和标签信息。</p>
+        <p><a href="https://pjreddie.com/darknet/yolo/]" target="_blank" rel="noopener">YOLO</a>是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLO、YOLO9000、YOLOv3 3个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架<a href="https://pjreddie.com/darknet/" target="_blank" rel="noopener">darknet</a>实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和标签信息。</p>
 <p>源码修改版本已上传至github：<a href="https://github.com/bichenghu/YOLO" target="_blank" rel="noopener">https://github.com/bichenghu/YOLO</a></p>
 <p>YOLO测试图片有两种方式</p>
 <h3 id="对于单张图片："><a href="#对于单张图片：" class="headerlink" title="对于单张图片："></a>对于单张图片：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#不指定输出路径</span><br><span class="line">./darknet detect cfg/yolov3.cfg yolov3.weights /home/username/data/xxx.jpg</span><br><span class="line">#指定输出路径</span><br><span class="line">./darknet detect cfg/yolov3.cfg yolov3.weights /home/username/data/xxx.jpg -out result</span><br></pre></td></tr></table></figure>
@@ -521,7 +521,7 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="mailto:bicheng.hu@qq.com" target="_blank" title="Mail">
+                    <a href="mailto:hbcdec@gmail.com" target="_blank" title="Mail">
                       
                         <i class="fa fa-fw fa-envelope"></i>Mail</a>
                   </span>
