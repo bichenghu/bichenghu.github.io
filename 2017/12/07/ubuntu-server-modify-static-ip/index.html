@@ -79,14 +79,14 @@
 <meta property="og:site_name" content="bichenghu.github.io">
 <meta property="og:description" content="Ubuntu Sever分配网络时默认使用的是DHCP，所以每次服务器重启或者重启虚拟机时，系统的IP都会改变，之前的一些SSH链接等又需要重新设置，很麻烦，所以特将在ubuntu14.04系统下设置静态IP的方法记录一下。1、查询本机ip地址和掩码地址1ifconfig 可以找到我们的ip地址为172.16.25.221 掩码地址为255.255.252.02、查询网关1netstat -rn">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/Ubunt-Server-Modify-Static-IP/ifconfig.png">
-<meta property="og:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/Ubunt-Server-Modify-Static-IP/netstat.png">
-<meta property="og:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/Ubunt-Server-Modify-Static-IP/interfaces.png">
+<meta property="og:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/ifconfig.png">
+<meta property="og:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/netstat.png">
+<meta property="og:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/interfaces.png">
 <meta property="og:updated_time" content="2018-05-09T06:58:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu Server修改静态IP">
 <meta name="twitter:description" content="Ubuntu Sever分配网络时默认使用的是DHCP，所以每次服务器重启或者重启虚拟机时，系统的IP都会改变，之前的一些SSH链接等又需要重新设置，很麻烦，所以特将在ubuntu14.04系统下设置静态IP的方法记录一下。1、查询本机ip地址和掩码地址1ifconfig 可以找到我们的ip地址为172.16.25.221 掩码地址为255.255.252.02、查询网关1netstat -rn">
-<meta name="twitter:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/Ubunt-Server-Modify-Static-IP/ifconfig.png">
+<meta name="twitter:image" content="https://bichenghu.github.io/2017/12/07/ubuntu-server-modify-static-ip/ifconfig.png">
 
 
 
@@ -349,10 +349,10 @@
 
       
         <p>Ubuntu Sever分配网络时默认使用的是DHCP，所以每次服务器重启或者重启虚拟机时，系统的IP都会改变，之前的一些SSH链接等又需要重新设置，很麻烦，所以特将在ubuntu14.04系统下设置静态IP的方法记录一下。<br>1、查询本机ip地址和掩码地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure></p>
-<p><img src="Ubunt-Server-Modify-Static-IP/ifconfig.png" alt=""><br>可以找到我们的ip地址为172.16.25.221 掩码地址为255.255.252.0<br>2、查询网关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -rn</span><br></pre></td></tr></table></figure></p>
-<p><img src="Ubunt-Server-Modify-Static-IP/netstat.png" alt=""><br>可以找到Gateway为172.16.27.254<br>3、设置静态ip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/netwok/interfaces</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2017/12/07/ubuntu-server-modify-static-ip/ifconfig.png" alt=""><br>可以找到我们的ip地址为172.16.25.221 掩码地址为255.255.252.0<br>2、查询网关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -rn</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2017/12/07/ubuntu-server-modify-static-ip/netstat.png" alt=""><br>可以找到Gateway为172.16.27.254<br>3、设置静态ip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/netwok/interfaces</span><br></pre></td></tr></table></figure></p>
 <p>将iface eth0 inet dhcp 改成iface eth0 inet static(一般默认网卡为eth0 ,本机显示为p6p1)，并在下面添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">address 172.16.25.221</span><br><span class="line">netmask 255.255.252.0</span><br><span class="line">gateway 172.16.27.254</span><br></pre></td></tr></table></figure></p>
-<p><img src="Ubunt-Server-Modify-Static-IP/interfaces.png" alt=""><br>4、执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/NetworkManager/NetworkManager.conf</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2017/12/07/ubuntu-server-modify-static-ip/interfaces.png" alt=""><br>4、执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/NetworkManager/NetworkManager.conf</span><br></pre></td></tr></table></figure></p>
 <p>将managed=false 改成true<br>5、修改dns 服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/resolv.conf</span><br></pre></td></tr></table></figure></p>
 <p>添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">202.114.64.2  #whudns</span><br><span class="line">202.114.96.1  #whudns</span><br></pre></td></tr></table></figure></p>
 <p>为避免重启后dns又被自动修改为默认值，可以选择永久性修改dns<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/resolvconf/resolv.conf.d/base</span><br></pre></td></tr></table></figure></p>
