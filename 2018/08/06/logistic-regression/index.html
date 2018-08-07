@@ -80,7 +80,7 @@
 <meta property="og:description" content="二分类逻辑斯谛回归是一个用于二分类的算法。对于二分类，假如你有一张图片作为输入，如图所示，你想输出一个标签来识别这张图片，即如果是猫，则输出1，反之则输出0。在二分类问题中，目标是需要训练出一个分类器，将图片的特征向量x作为输入，预测输出的结果标签y是0还是1，也就是这张图片中是否有猫。 逻辑斯谛回归模型对于逻辑斯谛回归，已知输入特征向量x，假设是一张图片，你希望把它识别出这是不是一张猫的图片，则">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://bichenghu.github.io/2018/08/06/logistic-regression/cat.jpg">
-<meta property="og:updated_time" content="2018-08-06T17:42:34.489Z">
+<meta property="og:updated_time" content="2018-08-07T04:07:40.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逻辑斯谛回归">
 <meta name="twitter:description" content="二分类逻辑斯谛回归是一个用于二分类的算法。对于二分类，假如你有一张图片作为输入，如图所示，你想输出一个标签来识别这张图片，即如果是猫，则输出1，反之则输出0。在二分类问题中，目标是需要训练出一个分类器，将图片的特征向量x作为输入，预测输出的结果标签y是0还是1，也就是这张图片中是否有猫。 逻辑斯谛回归模型对于逻辑斯谛回归，已知输入特征向量x，假设是一张图片，你希望把它识别出这是不是一张猫的图片，则">
@@ -361,7 +361,7 @@
 <script type="math/tex; mode=display">\log P(y|x)=\log(\hat{y}^{y}(1-\hat{y})^{(1-y)})=y\log\hat{y}+(1-y)\log(1-\hat{y})</script><p>因此对<script type="math/tex">P(y|x)=\hat{y}^{y}(1-\hat{y})^{(1-y)}</script>求最大值等价于求<script type="math/tex">y\log\hat{y}+(1-y)\log(1-\hat{y})</script>的最大值<br>所以对于单个样本，可以将损失函数定义为：</p>
 <script type="math/tex; mode=display">L(\hat{y},y)=-(y\log\hat{y}+(1-y)\log(1-\hat{y}))</script><p>对于整个训练集，所有样本服从同一分布且相互独立，其联合概率为：</p>
 <script type="math/tex; mode=display">P(training)=\prod_{i=1}^{m}P(y^{(i)}|x^{(i)})</script><p>利用极大似然估计法估计模型参数：<br>似然函数为：</p>
-<script type="math/tex; mode=display">\prod_{i=1}^{m}=(\hat{y}^{(i)})^{y^{(i)}}\left[1-\hat{y}^{(i)}\right]^{(1-\hat{y}^{(i)})}</script><p>对数似然函数为：</p>
+<script type="math/tex; mode=display">\prod_{i=1}^{m}(\hat{y}^{(i)})^{y^{(i)}}\left[1-\hat{y}^{(i)}\right]^{(1-\hat{y}^{(i)})}</script><p>对数似然函数为：</p>
 <script type="math/tex; mode=display">\sum_{i=1}^{m}\left[y^{(i)}\log\hat{y}^{(i)}+(1-y^{(i)})\log(1-\hat{y}^{(i)})\right]</script><p>对极大似然函数求极大值，即可得到<script type="math/tex">w，b</script>的估计值使得<script type="math/tex">\hat{y}^{(i)}最接近y^{(i)}</script><br>因此对于整个训练集，可以将代价函数定义为：</p>
 <script type="math/tex; mode=display">C(w,b)=-\frac{1}{m}\sum_{i=1}^{m}\left[y^{(i)}\log\hat{y}^{(i)}+(1-y^{(i)})\log(1-\hat{y}^{(i)})\right]</script>
       
