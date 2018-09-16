@@ -79,13 +79,13 @@
 <meta property="og:site_name" content="bichenghu.github.io">
 <meta property="og:description" content="感受野在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上每个像素点在原始图像上映射的区域大小，这里的原始图像是指网络的输入图像，是经过预处理（如resize，warp，crop）后的图像。 神经元之所以无法对原始图像的所有信息进行感知，是因为在卷积神经网络中普遍使用卷积层和pooling层，在层与层之间均为局部连接。 神经元">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.jpg">
-<meta property="og:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.jpg">
-<meta property="og:updated_time" content="2018-09-16T06:33:13.557Z">
+<meta property="og:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.png">
+<meta property="og:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf1.png">
+<meta property="og:updated_time" content="2018-09-16T06:40:10.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于感受野的理解与计算">
 <meta name="twitter:description" content="感受野在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上每个像素点在原始图像上映射的区域大小，这里的原始图像是指网络的输入图像，是经过预处理（如resize，warp，crop）后的图像。 神经元之所以无法对原始图像的所有信息进行感知，是因为在卷积神经网络中普遍使用卷积层和pooling层，在层与层之间均为局部连接。 神经元">
-<meta name="twitter:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.jpg">
+<meta name="twitter:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.png">
 
 
 
@@ -350,7 +350,7 @@
         <h3 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h3><p>在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上每个像素点在原始图像上映射的区域大小，这里的原始图像是指网络的输入图像，是经过预处理（如resize，warp，crop）后的图像。</p>
 <p>神经元之所以无法对原始图像的所有信息进行感知，是因为在卷积神经网络中普遍使用卷积层和pooling层，在层与层之间均为局部连接。</p>
 <p>神经元感受野的值越大表示其能接触到的原始图像范围就越大，也意味着它可能蕴含更为全局，语义层次更高的特征；相反，值越小则表示其所包含的特征越趋向局部和细节。因此感受野的值可以用来大致判断每一层的抽象层次.</p>
-<h3 id="感受野的计算"><a href="#感受野的计算" class="headerlink" title="感受野的计算"></a>感受野的计算</h3><p>如图所示<script type="math/tex">7*7</script>的原始图像，经过kernel_size=3, stride=2的Conv1，kernel_size=2, stride=1的Conv2后，输出特征图大小为<script type="math/tex">2 * 2</script>，很明显，原始图像的每个单元的感受野为1，Conv1的每个单元的感受野为3，而由于Conv2的每个单元都是由<script type="math/tex">2 * 2</script>范围的Conv1构成，因此回溯到原始图像，每个单元能够看到<script type="math/tex">5 * 5</script>大小的区域范围。<br><img src="/2018/09/15/receptive-field/rf0.jpg" alt=""><br>那么卷积神经网络的每一层感受野应该如何计算呢？很明显，深层卷积层的感受野大小和它之前所有层的滤波器大小和步长有关系，而涉及到这两个参数的有卷积层和pooling层。我们用<script type="math/tex">k_n, s_n, r_n</script>分别表示第n层的kernel_size，stride，receptive_field，通过对n-1层输出特征图的<script type="math/tex">k_n * k_n</script>个感受野为<script type="math/tex">r_{n-1}</script>的特征单元卷积得到的n层输出特征单元最大的感受野为<script type="math/tex">k_n * r_{n-1}</script>，但在对n-1层输入特征图进行卷积时，经常会由于<script type="math/tex">s_{n-1}</script>小于<script type="math/tex">k_{n-1}</script>而存在重叠，因此要减去<script type="math/tex">k_n - 1</script>个重叠部分（<script type="math/tex">k_n = 2</script>存在一个重叠部分，<script type="math/tex">k_n = 3</script>存在两个重叠部分）。<br><img src="/2018/09/15/receptive-field/rf0.jpg" alt=""><br>那么重叠部分应该怎么计算呢？如图所示，对于Conv2层，其输出特征单元最大感受野为：</p>
+<h3 id="感受野的计算"><a href="#感受野的计算" class="headerlink" title="感受野的计算"></a>感受野的计算</h3><p>如图所示<script type="math/tex">7*7</script>的原始图像，经过kernel_size=3, stride=2的Conv1，kernel_size=2, stride=1的Conv2后，输出特征图大小为<script type="math/tex">2 * 2</script>，很明显，原始图像的每个单元的感受野为1，Conv1的每个单元的感受野为3，而由于Conv2的每个单元都是由<script type="math/tex">2 * 2</script>范围的Conv1构成，因此回溯到原始图像，每个单元能够看到<script type="math/tex">5 * 5</script>大小的区域范围。<br><img src="/2018/09/15/receptive-field/rf0.png" alt=""><br>那么卷积神经网络的每一层感受野应该如何计算呢？很明显，深层卷积层的感受野大小和它之前所有层的滤波器大小和步长有关系，而涉及到这两个参数的有卷积层和pooling层。我们用<script type="math/tex">k_n, s_n, r_n</script>分别表示第n层的kernel_size，stride，receptive_field，通过对n-1层输出特征图的<script type="math/tex">k_n * k_n</script>个感受野为<script type="math/tex">r_{n-1}</script>的特征单元卷积得到的n层输出特征单元最大的感受野为<script type="math/tex">k_n * r_{n-1}</script>，但在对n-1层输入特征图进行卷积时，经常会由于<script type="math/tex">s_{n-1}</script>小于<script type="math/tex">k_{n-1}</script>而存在重叠，因此要减去<script type="math/tex">k_n - 1</script>个重叠部分（<script type="math/tex">k_n = 2</script>存在一个重叠部分，<script type="math/tex">k_n = 3</script>存在两个重叠部分）。<br><img src="/2018/09/15/receptive-field/rf1.png" alt=""><br>那么重叠部分应该怎么计算呢？如图所示，对于Conv2层，其输出特征单元最大感受野为：</p>
 <script type="math/tex; mode=display">k_2 * r_1 = 2 * 3 = 6</script><p>但由于Conv1层对输入图片卷积时存在重叠部分，所以Conv2层的特征单元感受野小于6，该重叠部分为：</p>
 <script type="math/tex; mode=display">k_1 * r_0 - s_1 * r_0 = r_1 - s_1 = 1</script><p>而对于Conv3层，其输出特征单元最大感受野为：</p>
 <script type="math/tex; mode=display">k_3 * r_2 = 2 * 5 = 10</script><p>又因为Conv2层对其输入特征图进行卷积时也存在重叠部分，所以Conv3层的特征单元感受野小于10，此时重叠部分为：</p>
