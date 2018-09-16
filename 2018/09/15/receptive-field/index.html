@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="linux,opencv,cuda," />
+  <meta name="keywords" content="cnn,deep learning," />
 
 
 
@@ -71,18 +71,21 @@
 
 
 
-<meta name="description" content="1、下载OpenCV3.4.1OpenCV3.4.1包括稳定功能模块版本opencv3.4.1和未稳定功能模块版本opencv_contrib3.4.1，在opencv3.4.1中，主要增强了dnn模块，特别是添加了对Faster R-CNN的支持，但有些算法还没有加进来，比如DPM，KCF等，因此本次编译加上了opencv_contrib3.4.1。可以自行去OpenCV github上打包下载">
-<meta name="keywords" content="linux,opencv,cuda">
+<meta name="description" content="感受野在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上每个像素点在原始图像上映射的区域大小，这里的原始图像是指网络的输入图像，是经过预处理（如resize，warp，crop）后的图像。 神经元之所以无法对原始图像的所有信息进行感知，是因为在卷积神经网络中普遍使用卷积层和pooling层，在层与层之间均为局部连接。 神经元">
+<meta name="keywords" content="cnn,deep learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu16.04编译opencv3.4.1 CUDA8.0">
-<meta property="og:url" content="https://bichenghu.github.io/2018/05/17/ubuntu16-04-complie-opencv3-4-1-with-cuda8-0/index.html">
+<meta property="og:title" content="关于感受野的理解与计算">
+<meta property="og:url" content="https://bichenghu.github.io/2018/09/15/receptive-field/index.html">
 <meta property="og:site_name" content="bichenghu.github.io">
-<meta property="og:description" content="1、下载OpenCV3.4.1OpenCV3.4.1包括稳定功能模块版本opencv3.4.1和未稳定功能模块版本opencv_contrib3.4.1，在opencv3.4.1中，主要增强了dnn模块，特别是添加了对Faster R-CNN的支持，但有些算法还没有加进来，比如DPM，KCF等，因此本次编译加上了opencv_contrib3.4.1。可以自行去OpenCV github上打包下载">
+<meta property="og:description" content="感受野在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上每个像素点在原始图像上映射的区域大小，这里的原始图像是指网络的输入图像，是经过预处理（如resize，warp，crop）后的图像。 神经元之所以无法对原始图像的所有信息进行感知，是因为在卷积神经网络中普遍使用卷积层和pooling层，在层与层之间均为局部连接。 神经元">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-19T16:26:41.427Z">
+<meta property="og:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.jpg">
+<meta property="og:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.jpg">
+<meta property="og:updated_time" content="2018-09-16T06:33:13.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu16.04编译opencv3.4.1 CUDA8.0">
-<meta name="twitter:description" content="1、下载OpenCV3.4.1OpenCV3.4.1包括稳定功能模块版本opencv3.4.1和未稳定功能模块版本opencv_contrib3.4.1，在opencv3.4.1中，主要增强了dnn模块，特别是添加了对Faster R-CNN的支持，但有些算法还没有加进来，比如DPM，KCF等，因此本次编译加上了opencv_contrib3.4.1。可以自行去OpenCV github上打包下载">
+<meta name="twitter:title" content="关于感受野的理解与计算">
+<meta name="twitter:description" content="感受野在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上每个像素点在原始图像上映射的区域大小，这里的原始图像是指网络的输入图像，是经过预处理（如resize，warp，crop）后的图像。 神经元之所以无法对原始图像的所有信息进行感知，是因为在卷积神经网络中普遍使用卷积层和pooling层，在层与层之间均为局部连接。 神经元">
+<meta name="twitter:image" content="https://bichenghu.github.io/2018/09/15/receptive-field/rf0.jpg">
 
 
 
@@ -112,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://bichenghu.github.io/2018/05/17/ubuntu16-04-complie-opencv3-4-1-with-cuda8-0/"/>
+  <link rel="canonical" href="https://bichenghu.github.io/2018/09/15/receptive-field/"/>
 
 
 
 
 
-  <title>Ubuntu16.04编译opencv3.4.1 CUDA8.0 | bichenghu.github.io</title>
+  <title>关于感受野的理解与计算 | bichenghu.github.io</title>
   
 
 
@@ -255,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bichenghu.github.io/2018/05/17/ubuntu16-04-complie-opencv3-4-1-with-cuda8-0/">
+    <link itemprop="mainEntityOfPage" href="https://bichenghu.github.io/2018/09/15/receptive-field/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bicheng Hu">
@@ -272,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ubuntu16.04编译opencv3.4.1 CUDA8.0</h1>
+          <h1 class="post-title" itemprop="name headline">关于感受野的理解与计算</h1>
         
 
         <div class="post-meta">
@@ -284,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T20:47:04+08:00">
-                2018-05-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T16:18:16+08:00">
+                2018-09-15
               </time>
             
 
@@ -307,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/opencv/" itemprop="url" rel="index">
-                    <span itemprop="name">opencv</span>
+                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">deep learning</span>
                   </a>
                 </span>
 
@@ -344,27 +347,114 @@
       
 
       
-        <h2 id="1、下载OpenCV3-4-1"><a href="#1、下载OpenCV3-4-1" class="headerlink" title="1、下载OpenCV3.4.1"></a>1、下载OpenCV3.4.1</h2><p>OpenCV3.4.1包括稳定功能模块版本opencv3.4.1和未稳定功能模块版本opencv_contrib3.4.1，在opencv3.4.1中，主要增强了dnn模块，特别是添加了对Faster R-CNN的支持，但有些算法还没有加进来，比如DPM，KCF等，因此本次编译加上了opencv_contrib3.4.1。可以自行去OpenCV github上打包下载opencv3.4.1和opencv_contrib3.4.1，也可以通过如下命令下载压缩包，解压后将两个文件夹放在同一目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/opencv/opencv/archive/3.4.1.zip </span><br><span class="line">wget https://github.com/opencv/opencv_contrib/archive/3.4.1.zip</span><br></pre></td></tr></table></figure></p>
-<h2 id="2、安装依赖"><a href="#2、安装依赖" class="headerlink" title="2、安装依赖"></a>2、安装依赖</h2><p>官方给出的依赖包如下：</p>
-<ul>
-<li>GCC 4.4.x or later</li>
-<li>CMake 2.6 or higher</li>
-<li>Git</li>
-<li>GTK+2.x or higher, including headers (libgtk2.0-dev) # 控制opencv GUI</li>
-<li>pkg-config</li>
-<li>Python 2.6 or later and Numpy 1.5 or later with developer packages (python-dev, python-numpy)</li>
-<li>ffmpeg or libav development packages: libavcodec-dev, libavformat-dev, libswscale-dev</li>
-<li>[optional] libtbb2 libtbb-dev</li>
-<li>[optional] libdc1394 2.x</li>
-<li>[optional] libjpeg-dev, libpng-dev, libtiff-dev, libjasper-dev, libdc1394-22-dev</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential cmake git libgtk2.0-dev pkg-config</span><br><span class="line">sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line">sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev # 处理图像所需的包</span><br><span class="line">sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev liblapacke-dev</span><br><span class="line">sudo apt-get install libxvidcore-dev libx264-dev # 处理视频所需的包</span><br><span class="line">sudo apt-get install libatlas-base-dev gfortran # 优化opencv功能</span><br><span class="line">sudo apt-get install ffmpeg</span><br></pre></td></tr></table></figure>
-<h2 id="3、配置编译opencv"><a href="#3、配置编译opencv" class="headerlink" title="3、配置编译opencv"></a>3、配置编译opencv</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd opencv-3.4.1</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/opencv3.4.1 -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.4.1/modules -D WITH_CUDA=ON -D WITH_CUBLAS=1 -D CUDA_ARCH_BIN=&quot;6.1&quot; -D CUDA_ARCH_PTX=&quot;6.1&quot; -D INSTALL_C_EXAMPLES=OFF -D INSTALL_PYTHON_EXAMPLES=ON -D WITH_OPENGL=ON -D WITH_V4L=ON -D WITH_NVCUVID=ON ..</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo sh -c &apos;echo &quot;/usr/local/opencv3.4.1/lib&quot; &gt;&gt; /etc/ld.so.conf.d/opencv.conf&apos;</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong><br> 1.CMAKE_INSTALL_PREFIX默认目录为/usr/local，可自行选择，只需要在更新环境变量的时候对应更改就行。<br>2.CUDA_ARCH_BIN和CUDA_ARCH_PTX这里是指的显卡计算能力，GeForce GTX 1080 Ti的计算能力为6.1，其他型号可以自行上NVIDIA官网查询对应版本：<br><a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-gpus</a><br>3.cmake的时候，有些contrib模块编译时需要的文件可能下载不下来，具体信息可以到build目录下CMakeDownloadLog.txt查看，去对应网址下载好文件放到opencv-3.4.1/.cache目录下（注意这是个隐藏文件）的对应文件夹里，并重命名（加上前面的一串字符，注意要一一对应），再重新cmake。这里我将自己下载的缺少的文件（data，ippicv，tiny_dnn，dnn_face_detector，xfeatures2d已经重命名好）放到网盘上：<br><a href="https://pan.baidu.com/s/1MSZIrVzl38Xj6rRRzfA0Kg" target="_blank" rel="noopener">https://pan.baidu.com/s/1MSZIrVzl38Xj6rRRzfA0Kg</a></p>
-<h2 id="4、编译时遇到的一些错误提示"><a href="#4、编译时遇到的一些错误提示" class="headerlink" title="4、编译时遇到的一些错误提示"></a>4、编译时遇到的一些错误提示</h2><h3 id="1-opencv-cudawarping和libopencv-cudafilter-so"><a href="#1-opencv-cudawarping和libopencv-cudafilter-so" class="headerlink" title="1.opencv_cudawarping和libopencv_cudafilter.so"></a>1.opencv_cudawarping和libopencv_cudafilter.so</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[ 54%] Linking CXX shared library ../../lib/libopencv_cudawarping.so</span><br><span class="line">[ 54%] Built target opencv_cudawarping</span><br><span class="line">Makefile:160: recipe for target &apos;all&apos; failed</span><br><span class="line">make: *** [all] Error 2</span><br><span class="line"></span><br><span class="line">## libopencv_cudafilter.so</span><br><span class="line">[ 54%] Linking CXX shared library ../../lib/libopencv_cudafilters.so</span><br><span class="line">[ 54%] Built target opencv_cudafilters</span><br><span class="line">Makefile:160: recipe for target &apos;all&apos; failed</span><br><span class="line">make: *** [all] Error 2</span><br></pre></td></tr></table></figure>
-<p>这里是我在用到make -j16或make -j8时碰到的，最后编译成功那次我只用了make<br>参考链接：<a href="https://devtalk.nvidia.com/default/topic/1016293/jetson-tx1/error-while-compiling-opencv-on-jetson-tx1/" target="_blank" rel="noopener">https://devtalk.nvidia.com/default/topic/1016293/jetson-tx1/error-while-compiling-opencv-on-jetson-tx1/</a></p>
-<h3 id="2-undefined-reference-to-‘inflateValidate-ZLIB-1-2-9’"><a href="#2-undefined-reference-to-‘inflateValidate-ZLIB-1-2-9’" class="headerlink" title="2.undefined reference to ‘inflateValidate@ZLIB_1.2.9’"></a>2.undefined reference to ‘inflateValidate@ZLIB_1.2.9’</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//home/mmap/anaconda3/lib/libpng16.so.16:undefined reference to&apos;inflateValidate@ZLIB_1.2.9&apos;</span><br><span class="line">collect2: error: ld returned 1 exit status</span><br></pre></td></tr></table></figure>
-<p> 每次将make -j8 改成make的时候就提示这个错误，不知道为什么一开始不提示，（可能上面的错误主要原因也是这个，可以试试解决这个问题后用make -j4 或 make -j8）这里是cmake的时候zlib和libpng索引到anaconda下面的库文件了，而anaconda下的这两个库文件版本不知道是太新了还是有冲突，最后直接conda卸载这两个库文件，让cmake的时候索引到系统默认版本（/usr/local/lib目录下）</p>
+        <h3 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h3><p>在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上每个像素点在原始图像上映射的区域大小，这里的原始图像是指网络的输入图像，是经过预处理（如resize，warp，crop）后的图像。</p>
+<p>神经元之所以无法对原始图像的所有信息进行感知，是因为在卷积神经网络中普遍使用卷积层和pooling层，在层与层之间均为局部连接。</p>
+<p>神经元感受野的值越大表示其能接触到的原始图像范围就越大，也意味着它可能蕴含更为全局，语义层次更高的特征；相反，值越小则表示其所包含的特征越趋向局部和细节。因此感受野的值可以用来大致判断每一层的抽象层次.</p>
+<h3 id="感受野的计算"><a href="#感受野的计算" class="headerlink" title="感受野的计算"></a>感受野的计算</h3><p>如图所示<script type="math/tex">7*7</script>的原始图像，经过kernel_size=3, stride=2的Conv1，kernel_size=2, stride=1的Conv2后，输出特征图大小为<script type="math/tex">2 * 2</script>，很明显，原始图像的每个单元的感受野为1，Conv1的每个单元的感受野为3，而由于Conv2的每个单元都是由<script type="math/tex">2 * 2</script>范围的Conv1构成，因此回溯到原始图像，每个单元能够看到<script type="math/tex">5 * 5</script>大小的区域范围。<br><img src="/2018/09/15/receptive-field/rf0.jpg" alt=""><br>那么卷积神经网络的每一层感受野应该如何计算呢？很明显，深层卷积层的感受野大小和它之前所有层的滤波器大小和步长有关系，而涉及到这两个参数的有卷积层和pooling层。我们用<script type="math/tex">k_n, s_n, r_n</script>分别表示第n层的kernel_size，stride，receptive_field，通过对n-1层输出特征图的<script type="math/tex">k_n * k_n</script>个感受野为<script type="math/tex">r_{n-1}</script>的特征单元卷积得到的n层输出特征单元最大的感受野为<script type="math/tex">k_n * r_{n-1}</script>，但在对n-1层输入特征图进行卷积时，经常会由于<script type="math/tex">s_{n-1}</script>小于<script type="math/tex">k_{n-1}</script>而存在重叠，因此要减去<script type="math/tex">k_n - 1</script>个重叠部分（<script type="math/tex">k_n = 2</script>存在一个重叠部分，<script type="math/tex">k_n = 3</script>存在两个重叠部分）。<br><img src="/2018/09/15/receptive-field/rf0.jpg" alt=""><br>那么重叠部分应该怎么计算呢？如图所示，对于Conv2层，其输出特征单元最大感受野为：</p>
+<script type="math/tex; mode=display">k_2 * r_1 = 2 * 3 = 6</script><p>但由于Conv1层对输入图片卷积时存在重叠部分，所以Conv2层的特征单元感受野小于6，该重叠部分为：</p>
+<script type="math/tex; mode=display">k_1 * r_0 - s_1 * r_0 = r_1 - s_1 = 1</script><p>而对于Conv3层，其输出特征单元最大感受野为：</p>
+<script type="math/tex; mode=display">k_3 * r_2 = 2 * 5 = 10</script><p>又因为Conv2层对其输入特征图进行卷积时也存在重叠部分，所以Conv3层的特征单元感受野小于10，此时重叠部分为：</p>
+<script type="math/tex; mode=display">k_2 * r_1 - s_2 * r_1 = r_2 - s_2 * s_1 * r_0 = r_2 - s_2 * s_1 = 3</script><p>因此对于卷积神经网络，其感受野计算有如下规律：</p>
+<script type="math/tex; mode=display">r_0 = 1</script><script type="math/tex; mode=display">r_1 = k_1</script><script type="math/tex; mode=display">r_n = r_{n-1} * k_n - (k_n - 1) * (r_{n-1} - \prod_{i=1}^{n-1}s_i)\quad\quad n>=2</script><p>以上公式只计算conv层和pooling层，以AlexNet为例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">No.</th>
+<th style="text-align:left">Layer</th>
+<th style="text-align:left">Input Size</th>
+<th style="text-align:left">Kernel Size</th>
+<th style="text-align:left">Stride</th>
+<th style="text-align:left">Padding</th>
+<th style="text-align:left">Output Size</th>
+<th style="text-align:left">Receptive Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Conv1</td>
+<td style="text-align:left">227 * 227</td>
+<td style="text-align:left">11 * 11</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">55 * 55</td>
+<td style="text-align:left">11</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">Pooling1</td>
+<td style="text-align:left">55 * 55</td>
+<td style="text-align:left">3 * 3</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">27 * 27</td>
+<td style="text-align:left">19</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">Conv2</td>
+<td style="text-align:left">27 * 27</td>
+<td style="text-align:left">5 * 5</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">27 * 27</td>
+<td style="text-align:left">51</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">Pooling2</td>
+<td style="text-align:left">27 * 27</td>
+<td style="text-align:left">3 * 3</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">67</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">Conv3</td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">3 * 3</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">99</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">Conv4</td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">3 * 3</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">131</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">Conv5</td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">3 * 3</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">163</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">Pooling5</td>
+<td style="text-align:left">13 * 13</td>
+<td style="text-align:left">3 * 3</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">6* 6</td>
+<td style="text-align:left">195</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>其中Padding参数不影响感受野大小。</p>
 
       
     </div>
@@ -382,11 +472,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+            <a href="/tags/cnn/" rel="tag"><i class="fa fa-tag"></i> cnn</a>
           
-            <a href="/tags/opencv/" rel="tag"><i class="fa fa-tag"></i> opencv</a>
-          
-            <a href="/tags/cuda/" rel="tag"><i class="fa fa-tag"></i> cuda</a>
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
           
         </div>
       
@@ -399,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/09/ones-complement-twos-complement/" rel="next" title="关于原码、反码、补码">
-                <i class="fa fa-chevron-left"></i> 关于原码、反码、补码
+              <a href="/2018/08/06/logistic-regression/" rel="next" title="逻辑斯谛回归">
+                <i class="fa fa-chevron-left"></i> 逻辑斯谛回归
               </a>
             
           </div>
@@ -408,10 +496,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/15/yolo-save-labels/" rel="prev" title="YOLO 检测多张图片并保存标签信息">
-                YOLO 检测多张图片并保存标签信息 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、下载OpenCV3-4-1"><span class="nav-number">1.</span> <span class="nav-text">1、下载OpenCV3.4.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装依赖"><span class="nav-number">2.</span> <span class="nav-text">2、安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、配置编译opencv"><span class="nav-number">3.</span> <span class="nav-text">3、配置编译opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、编译时遇到的一些错误提示"><span class="nav-number">4.</span> <span class="nav-text">4、编译时遇到的一些错误提示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-opencv-cudawarping和libopencv-cudafilter-so"><span class="nav-number">4.1.</span> <span class="nav-text">1.opencv_cudawarping和libopencv_cudafilter.so</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-undefined-reference-to-‘inflateValidate-ZLIB-1-2-9’"><span class="nav-number">4.2.</span> <span class="nav-text">2.undefined reference to ‘inflateValidate@ZLIB_1.2.9’</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#感受野"><span class="nav-number">1.</span> <span class="nav-text">感受野</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感受野的计算"><span class="nav-number">2.</span> <span class="nav-text">感受野的计算</span></a></li></ol></div>
             
 
           </div>
