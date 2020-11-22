@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,19 +48,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/github.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/github.png?v=5.1.4">
 
 
 
 
-  <meta name="keywords" content="yolo,object detection," />
+
+
+  <meta name="keywords" content="yolo,object detection,">
 
 
 
@@ -79,7 +83,7 @@
 <meta property="og:site_name" content="bichenghu.github.io">
 <meta property="og:description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLO、YOLOv2、YOLO9000、YOLOv3 4个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和标签">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-02T04:56:53.465Z">
+<meta property="og:updated_time" content="2020-04-03T16:24:33.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLO 检测多张图片并保存标签信息">
 <meta name="twitter:description" content="YOLO是一个基于深度学习的end-to-end、real-time目标检测方法，至今已经有YOLO、YOLOv2、YOLO9000、YOLOv3 4个版本。YOLO网络由作者用C和CUDA语言写的一个卷积神经网络框架darknet实现，目前github也有tensorflow,pytorch等开源框架的复现，本文主要基于darknet源码修改实现对一个目录下的图片进行检测并保存检测结果图片和标签">
@@ -112,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="https://bichenghu.github.io/2018/06/15/yolo-save-labels/"/>
+  <link rel="canonical" href="https://bichenghu.github.io/2018/06/15/yolo-save-labels/">
 
 
 
@@ -146,7 +150,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">bichenghu.github.io</span>
         <span class="logo-line-after"><i></i></span>
@@ -176,7 +180,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -186,7 +190,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -196,7 +200,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -206,7 +210,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -216,7 +220,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -259,7 +263,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bicheng Hu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -295,7 +299,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -375,9 +379,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/yolo/" rel="tag"><i class="fa fa-tag"></i> yolo</a>
+            <a href="/tags/yolo/" rel="tag"># yolo</a>
           
-            <a href="/tags/object-detection/" rel="tag"><i class="fa fa-tag"></i> object detection</a>
+            <a href="/tags/object-detection/" rel="tag"># object detection</a>
           
         </div>
       
@@ -468,9 +472,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Bicheng Hu" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Bicheng Hu">
             
               <p class="site-author-name" itemprop="name">Bicheng Hu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -525,7 +527,7 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="mailto:hbcdec@gmail.com" target="_blank" title="Mail">
+                    <a href="mailto:bichenghu@163.com" target="_blank" title="Mail">
                       
                         <i class="fa fa-fw fa-envelope"></i>Mail</a>
                   </span>
@@ -574,14 +576,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -768,26 +763,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
